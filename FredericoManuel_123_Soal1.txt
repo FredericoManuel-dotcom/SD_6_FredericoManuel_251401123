@@ -1,0 +1,40 @@
+//Stack Linked List
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+Node* top = NULL;
+
+void push(int value) {
+    Node* newNode = new Node();
+    newNode->data = value;
+    newNode->next = top;
+    top = newNode;
+}
+
+void pop() {
+    Node* temp = top;
+    top = top->next;
+    delete temp;
+}
+
+int main() {
+    int input;
+
+    while (cin >> input && input != -1) {
+        push(input);
+    }
+
+    while (top != NULL) {
+        cout << top->data << " ";
+        pop();
+    }
+
+    cout << endl;
+
+    return 0;
+}

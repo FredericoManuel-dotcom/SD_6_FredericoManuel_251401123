@@ -1,0 +1,48 @@
+//queue linked list
+#include <iostream>
+using namespace std;
+
+struct Node {
+    float data;
+    Node* next;
+};
+
+Node* front = NULL;
+Node* rear = NULL;
+
+void push(float value) {
+    Node* newNode = new Node();
+    newNode->data = value;
+    newNode->next = NULL;
+    if (rear == NULL) {
+        front = newNode;
+        rear = newNode;
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+    }
+}
+
+void pop() {
+    Node* temp = front;
+    front = front->next;
+    if (front == NULL) rear = NULL;
+    delete temp;
+}
+
+int main() {
+    float input;
+
+    while (cin >> input && input != -1) {
+        push(input);
+    }
+
+    while (front != NULL) {
+        cout << front->data << " ";
+        pop();
+    }
+
+    cout << endl;
+
+    return 0;
+}
